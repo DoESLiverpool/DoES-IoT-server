@@ -1,0 +1,27 @@
+---
+- name: MQTT on a Raspberry Pi
+  hosts: mqttiab-pi
+  vars:
+    pi_name: mqtt
+  remote_user: pi
+  become: yes
+  become_method: sudo
+
+  pre_tasks:
+    - name: Update apt
+      apt: upgrade=dist update_cache=yes
+      become: true
+
+  tasks:
+  - name: Change Pis name
+    hostname: name="{{ pi_name }}"
+  - name: Update hosts file too
+    replace: dest=/etc/hosts regexp='raspberrypi' replace="{{ pi_name }}"
+  - name: Install mDNS so we can connect as mqtt.local
+    apt: name=libnss-mdns state=present
+  - name: Install mosquitto
+    apt: name=mosquitto state=present
+  - name: Install mosquitto clients to help debugging, etc.
+    apt: name=mosquitto-clients state=present
+  - name: Copy across the mosquitto config file
+    copy: src=mosquitto.conf dest=/etc/mosquitto/conf.d/mosquitto.conf
