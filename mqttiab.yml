@@ -6,6 +6,8 @@
   remote_user: pi
   become: yes
   become_method: sudo
+  roles:
+    - base-nodered
 
   pre_tasks:
     - name: Update apt

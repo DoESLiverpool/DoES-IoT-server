@@ -1,5 +1,5 @@
-# mqtt-in-a-box
-Trivial install of Mosquitto onto a Raspberry Pi to set up a simple local MQTT broker
+# DoES-IoT-server
+Mosquitto and NodeRED, etc. server running on a Raspberry Pi stationed in DoES Liverpool to allow IoT experimentation.
 
 ## Installation
 
