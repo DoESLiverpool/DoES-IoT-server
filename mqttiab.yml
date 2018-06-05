@@ -8,6 +8,7 @@
   become_method: sudo
   roles:
     - base-nodered
+    - nm-wireless
 
   pre_tasks:
     - name: Update apt
